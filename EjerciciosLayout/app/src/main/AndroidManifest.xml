@@ -15,7 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EjercicioLayout"></activity>
+        <activity android:name=".Ejerciciolayout" />
+        <activity android:name=".EjercicioTable" />
+        <activity android:name=".EjercicioRelative"></activity>
     </application>
 
 </manifest>

@@ -11,9 +11,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
     public void EjercicioLayout (View clicado){
-        Intent miIntent = new Intent(MainActivity.this, EjercicioLayout.class);
+        Intent miIntent = new Intent(MainActivity.this, Ejerciciolayout.class);
+        Bundle miBundle = new Bundle();
+        startActivity(miIntent);
+    }
+    public void EjercicioTable (View clicado){
+        Intent miIntent = new Intent(MainActivity.this, EjercicioTable.class);
+        Bundle miBundle = new Bundle();
+        startActivity(miIntent);
+    }
+    public void EjercicioRelative (View clicado){
+        Intent miIntent = new Intent(MainActivity.this, EjercicioRelative.class);
         Bundle miBundle = new Bundle();
         startActivity(miIntent);
     }

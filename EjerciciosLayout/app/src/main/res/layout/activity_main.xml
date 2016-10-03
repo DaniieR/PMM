@@ -19,5 +19,11 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ejercicio Table"/>
+        android:text="Ejercicio Table"
+        android:onClick="EjercicioTable"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ejercicio Relative"
+        android:onClick="EjercicioRelative"/>
 </LinearLayout>
