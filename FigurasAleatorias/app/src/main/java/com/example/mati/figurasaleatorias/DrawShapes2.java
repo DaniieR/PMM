@@ -1,7 +1,12 @@
 package com.example.mati.figurasaleatorias;
 
-/**
- * Created by mati on 7/11/16.
- */
-public class DrawShapes2 {
+import android.app.Activity;
+import android.os.Bundle;
+
+public class DrawShapes2 extends Activity {
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_draw_shapes2);
+    }
 }

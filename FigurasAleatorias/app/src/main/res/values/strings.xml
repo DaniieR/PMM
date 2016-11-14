@@ -2,4 +2,5 @@
     <string name="app_name">FigurasAleatorias</string>
     <string name="app_name1">FigurasAleatorias1</string>
     <string name="app_name2">FigurasAleatorias2</string>
+    <string name="heading_activity_draw_shapes2">FigurasAleatorias2</string>
 </resources>
