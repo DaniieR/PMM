@@ -7,12 +7,12 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.mati.ejemploexamen.MainActivity">
+    tools:context="com.example.daniel.ejemploexamen.MainActivity">
 
     <TableRow android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:id="@+id/row1">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/row1">
         <LinearLayout
             android:orientation="vertical">
             <TextView
@@ -45,10 +45,12 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/radiobutton1"
                 android:text="TARIFA NORMAL"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/radiobutton2"
                 android:text="TARIFA URGENTE"/>
         </RadioGroup>
     </TableRow>
@@ -59,20 +61,24 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/cajaregalo"
                 android:text="Caja Regalo"/>
         </LinearLayout>
         <LinearLayout android:gravity="right">
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/tarjetadedicada"
                 android:text="Con Tarjeta Dedicada"
                 />
         </LinearLayout>
     </TableRow>
     <EditText android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Introduce el peso del paquete"
-        android:id="@+id/txt1"/>
+        android:hint="Introduce el peso del paquete"
+        android:id="@+id/txt1"
+        android:inputType="numberDecimal"/>
+
     <TableRow android:orientation="horizontal"
         android:gravity="right">
         <Button android:layout_height="wrap_content"
