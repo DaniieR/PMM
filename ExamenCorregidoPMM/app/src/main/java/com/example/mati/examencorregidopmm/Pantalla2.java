@@ -5,8 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 public class Pantalla2 extends AppCompatActivity {
 
@@ -25,9 +28,11 @@ public class Pantalla2 extends AppCompatActivity {
         final TextView costefinal = (TextView)findViewById(R.id.costefinal);
         final ImageView imagen = (ImageView)findViewById(R.id.imagen);
         final Button boton1 = (Button)findViewById(R.id.button);
+        final CheckBox chkReloj = (CheckBox)findViewById(R.id.relojchk);
+        final TimePicker reloj = (TimePicker)findViewById(R.id.reloj);
 
         Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
+        final Bundle bundle = intent.getExtras();
 
         coche=(Coche) intent.getSerializableExtra("informacion");
         String modelo=coche.getModelo();
@@ -49,9 +54,24 @@ public class Pantalla2 extends AppCompatActivity {
         boton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String mensaje = "Adios!";
+                bundle.putString("Reloj",mensaje);
                 Intent miintent =new Intent(Pantalla2.this,MainActivity.class);
-                startActivity(miintent);
+                miintent.putExtras(bundle);
+                setResult(RESULT_OK,miintent);
+                finish();
 
+            }
+        });
+        chkReloj.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    reloj.setVisibility(reloj.VISIBLE);
+                }
+                else {
+                    reloj.setVisibility(reloj.INVISIBLE);
+                }
             }
         });
     }

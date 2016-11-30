@@ -18,6 +18,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     };
     Coche coche;
 
+    private static final int REQUEST_PANTALLA2=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -179,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putString("seguro",Seguro);
                 bundle.putDouble("precio",precio);
                 activityIntent.putExtras(bundle);
-                startActivity(activityIntent);
+                startActivityForResult(activityIntent,REQUEST_PANTALLA2);
             }
         });
     }
@@ -220,5 +222,17 @@ public class MainActivity extends AppCompatActivity {
             View vistadesplegada = getView(position, convertview, parent);
             return vistadesplegada;
         }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==RESULT_OK){
+            if (requestCode==REQUEST_PANTALLA2){
+                Bundle bundle1 = data.getExtras();
+                String resultado = bundle1.getString("Reloj");
+                Toast.makeText(this,resultado,Toast.LENGTH_SHORT).show();
+            }
+        }
+
     }
 }

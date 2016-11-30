@@ -57,4 +57,14 @@
         android:text="Volver"
         android:id="@+id/button"
         />
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relojchk"
+        android:text="Mostrar Reloj"/>
+    <TimePicker
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/reloj"
+        android:visibility="invisible"/>
 </LinearLayout>
