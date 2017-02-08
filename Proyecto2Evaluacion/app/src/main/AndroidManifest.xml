@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mati.proyecto2evaluacion">
+    package="com.example.daniel.proyecto2evaluacion">
 
     <application
         android:allowBackup="true"
@@ -16,8 +16,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Login" />
+        <activity android:name=".Pedido" />
         <activity android:name=".Registro" />
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".Skin"></activity>
     </application>
 
 </manifest>

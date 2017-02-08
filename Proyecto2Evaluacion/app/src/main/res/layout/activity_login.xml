@@ -22,20 +22,20 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="#1cffffff">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="USUARIO"
-            android:textColor="#ffffff"
-            android:id="@+id/usuario"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/contraseña1"
-            android:hint="CONTRASEÑA"
-            android:textColor="#ffffff" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="USUARIO"
+                android:textColor="#ffffff"
+                android:id="@+id/usuario"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/contraseña1"
+                android:hint="CONTRASEÑA"
+                android:textColor="#ffffff" />
         </LinearLayout>
         <Button
             android:layout_width="match_parent"
