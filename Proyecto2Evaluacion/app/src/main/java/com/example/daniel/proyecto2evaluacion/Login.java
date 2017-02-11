@@ -45,6 +45,8 @@ public class Login extends AppCompatActivity {
 
                     if (Usuario.equals(usu)&&Password.equals(pwd)){
                         Toast.makeText(getApplicationContext(),"EL Login ha sido correcto",Toast.LENGTH_LONG).show();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("usuario",Usuario);
                         Intent intent = new Intent(Login.this,Pedido.class);
                         startActivity(intent);
                     }
@@ -61,6 +63,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Login.this,Registro.class);
                 startActivity(intent);
+
             }
         });
 

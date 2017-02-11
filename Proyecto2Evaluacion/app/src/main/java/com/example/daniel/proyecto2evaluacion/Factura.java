@@ -1,8 +1,10 @@
 package com.example.daniel.proyecto2evaluacion;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -19,6 +21,9 @@ public class Factura extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_factura);
 
+        BDUsuarios cliBDh = new BDUsuarios(this, "BDUsuarios", null,1);
+        final SQLiteDatabase bd = cliBDh.getWritableDatabase();
+
         final TextView Personaje = (TextView)findViewById(R.id.personaje_factura);
         final TextView Skin = (TextView)findViewById(R.id.skin_factura);
         final TextView Extra = (TextView)findViewById(R.id.extra_factura);
@@ -28,7 +33,7 @@ public class Factura extends AppCompatActivity {
         final Button rechazar = (Button)findViewById(R.id.botonNO);
 
         intent = getIntent();
-
+        Bundle bundle = getIntent().getExtras();
         skinM = (Skin)intent.getSerializableExtra("producto");
         credito = intent.getBooleanExtra("pagoCredito",false);
         transferencia = intent.getBooleanExtra("pagoTransferencia",false);
@@ -41,30 +46,30 @@ public class Factura extends AppCompatActivity {
         Skin.setText("SKIN: "+skin);
 
         if (credito.booleanValue()==true){
-            Pago.setText("LA FORMA DE PAGO ES :");
+            Pago.setText("LA FORMA DE PAGO ES : POR TARJETA DE CREDITO");
         }
         if (transferencia.booleanValue()==true){
-            Pago.setText("LA FORMA DE PAGO ES :");
+            Pago.setText("LA FORMA DE PAGO ES : POR TRANSFERENCIA");
         }
 
         extra = intent.getStringExtra("chromas");
         Extra.setText("CHROMAS: "+extra);
 
-        Total.setText(precioFinal.toString());
-
-
-    }
-    public void total(){
+        //CALCULAR EL PRECIO FINAL
         Double precio = skinM.getPrecio();
-
-        //CALCULAMOS EL PRECIO SI ELIGE LA OPCION DE CON CHROMAS
-        if (extra.equals("con chormas")){
+        if (extra.equals("con chromas")){
             precioFinal = precio + 5.00;
         }
-
-        //CALCULAMOS LAS TASAS POR PAGAR CON TRANSFERENCIA
-        if (transferencia.booleanValue()==true){
+        if (transferencia.booleanValue()==true) {
             precioFinal = precioFinal + 1.50;
         }
+        Total.setText("EL PRECIO TOTAL ES: "+String.valueOf(precioFinal)+"€");
+
+        aceptar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bd.execSQL("");
+            }
+        });
     }
 }

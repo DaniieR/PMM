@@ -28,35 +28,40 @@
             android:id="@+id/personaje_factura"
             android:text=""
             android:textStyle="bold"
-            android:textSize="12pt"/>
+            android:textSize="10pt"
+            android:textColor="@android:color/background_light"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/skin_factura"
             android:text=""
             android:textStyle="bold"
-            android:textSize="12pt"/>
+            android:textSize="10pt"
+            android:textColor="@android:color/background_light"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/extra_factura"
             android:text=""
             android:textStyle="bold"
-            android:textSize="12pt"/>
+            android:textSize="10pt"
+            android:textColor="@android:color/background_light"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/pago_factura"
             android:text=""
             android:textStyle="bold"
-            android:textSize="12pt"/>
+            android:textSize="10pt"
+            android:textColor="@android:color/background_light"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/total_factura"
             android:text=""
             android:textStyle="bold"
-            android:textSize="12pt"/>
+            android:textSize="10pt"
+            android:textColor="@android:color/background_light"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -33,6 +35,7 @@ public class Pedido extends AppCompatActivity {
     String seleccionado;
     boolean pagoCredito,pagoTransferencia;
     private Skin[]skins;
+    Bundle bundle;
     public ArrayList<Skin> aspectos= new ArrayList<Skin>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +108,7 @@ public class Pedido extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //PASAR DATOS DEL SPINNER
-                Bundle bundle = new Bundle();
+                bundle = new Bundle();
                 Skin datos = new Skin(skins[miSpinner.getSelectedItemPosition()].getPersonaje(),
                         skins[miSpinner.getSelectedItemPosition()].getAspecto(),
                         skins[miSpinner.getSelectedItemPosition()].getPrecio());
@@ -129,11 +132,11 @@ public class Pedido extends AppCompatActivity {
                 //COMPROBAMOS SI LO QUIERE CON CHROMAS O SIN
                 if (miRadio.getCheckedRadioButtonId()==R.id.radiobutton1){
                     bundle.putString("RadioGroup",radiobutton1.getText().toString());
-                    seleccionado="con chormas";
+                    seleccionado="con chromas";
                     bundle.putString("chromas",seleccionado);
                 }else{
                     bundle.putString("RadioGroup",radiobutton2.getText().toString());
-                    seleccionado="sin chormas";
+                    seleccionado="sin chromas";
                     bundle.putString("chromas",seleccionado);
                 }
 
@@ -143,6 +146,7 @@ public class Pedido extends AppCompatActivity {
                 mostrarInformacion();
 
                 Intent intent = new Intent(Pedido.this,Factura.class);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -161,7 +165,35 @@ public class Pedido extends AppCompatActivity {
         builder.create().show();
     }
 
-    //MENU
+    //INICIO Menu Acerca De
+    @Override
+    public boolean onCreateOptionsMenu (Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.acercade:
+                UsuarioActual();
+                break;
+        }
+        return true;
+    }
+    public void UsuarioActual(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("LOGUEADO COMO:")
+                .setMessage(bundle.getString("usuario"))
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        builder.create().show();
+    }
+    //FIN de Menu
 
     //INICIO DE ADAPTADOR SPINNER
     public class AdaptadorSpinner extends ArrayAdapter{
