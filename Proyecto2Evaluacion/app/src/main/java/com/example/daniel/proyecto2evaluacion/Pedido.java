@@ -32,10 +32,11 @@ public class Pedido extends AppCompatActivity {
     RadioGroup miRadio;
     RadioButton radiobutton1,radiobutton2;
     CheckBox credito,transferencia;
-    String seleccionado;
+    String seleccionado, usuario;
     boolean pagoCredito,pagoTransferencia;
     private Skin[]skins;
     Bundle bundle;
+    Intent intent;
     public ArrayList<Skin> aspectos= new ArrayList<Skin>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,10 +104,12 @@ public class Pedido extends AppCompatActivity {
         pagoCredito=false;
         pagoTransferencia=false;
         seleccionado="";
+        usuario = getIntent().getStringExtra("usuario");
 
         miButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 //PASAR DATOS DEL SPINNER
                 bundle = new Bundle();
                 Skin datos = new Skin(skins[miSpinner.getSelectedItemPosition()].getPersonaje(),
@@ -140,12 +143,10 @@ public class Pedido extends AppCompatActivity {
                     bundle.putString("chromas",seleccionado);
                 }
 
-                String usu = getIntent().getStringExtra("usuario");
-                bundle.putSerializable("usuario",usu);
-
                 mostrarInformacion();
 
-                Intent intent = new Intent(Pedido.this,Factura.class);
+                bundle.putSerializable("usuario",usuario);
+                intent = new Intent(Pedido.this,Factura.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -168,14 +169,16 @@ public class Pedido extends AppCompatActivity {
     //INICIO Menu Acerca De
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.menu2, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.acercade:
+            case R.id.logueado:
+                UsuarioActual();
+            case R.id.Internet:
                 UsuarioActual();
                 break;
         }
@@ -184,7 +187,7 @@ public class Pedido extends AppCompatActivity {
     public void UsuarioActual(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("LOGUEADO COMO:")
-                .setMessage(bundle.getString("usuario"))
+                .setMessage("HOLA: "+usuario)
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

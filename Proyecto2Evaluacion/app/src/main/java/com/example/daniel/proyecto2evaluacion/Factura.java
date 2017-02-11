@@ -7,12 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Factura extends AppCompatActivity {
 
     private Skin skinM;
     private Intent intent;
-    private String extra;
+    private String extra,usuario, pedido;
     private Double precioFinal;
     private Boolean credito,transferencia;
 
@@ -34,6 +35,7 @@ public class Factura extends AppCompatActivity {
 
         intent = getIntent();
         Bundle bundle = getIntent().getExtras();
+        usuario = getIntent().getStringExtra("usuario");
         skinM = (Skin)intent.getSerializableExtra("producto");
         credito = intent.getBooleanExtra("pagoCredito",false);
         transferencia = intent.getBooleanExtra("pagoTransferencia",false);
@@ -56,7 +58,7 @@ public class Factura extends AppCompatActivity {
         Extra.setText("CHROMAS: "+extra);
 
         //CALCULAR EL PRECIO FINAL
-        Double precio = skinM.getPrecio();
+        final Double precio = skinM.getPrecio();
         if (extra.equals("con chromas")){
             precioFinal = precio + 5.00;
         }
@@ -65,10 +67,24 @@ public class Factura extends AppCompatActivity {
         }
         Total.setText("EL PRECIO TOTAL ES: "+String.valueOf(precioFinal)+"€");
 
+        //PONEMOS EL PEDIDO EN UN STRING PARA INSERTARLO EN LA TABLA
+        pedido = personaje+" "+skin+" ,"+precioFinal+"€";
+
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bd.execSQL("");
+                bd.execSQL("INSERT INTO Pedidos (usuario, pedido) VALUES ('"+usuario+"', '"+pedido+"')");
+                Toast.makeText(getApplicationContext(),"AÑADIDO AL CARRO",Toast.LENGTH_SHORT).show();
+                intent = new Intent(Factura.this,Pedido.class);
+                startActivity(intent);
+            }
+        });
+
+        rechazar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Factura.this,Pedido.class);
+                startActivity(intent);
             }
         });
     }

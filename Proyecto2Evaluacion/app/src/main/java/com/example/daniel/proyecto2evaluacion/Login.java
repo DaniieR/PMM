@@ -48,6 +48,7 @@ public class Login extends AppCompatActivity {
                         Bundle bundle = new Bundle();
                         bundle.putString("usuario",Usuario);
                         Intent intent = new Intent(Login.this,Pedido.class);
+                        intent.putExtras(bundle);
                         startActivity(intent);
                     }
                     else {
