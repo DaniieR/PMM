@@ -47,7 +47,7 @@ public class BDUsuarios extends SQLiteOpenHelper {
         bd.execSQL(cadSQL);
         bd.execSQL(cadSQL1);
         bd.execSQL(cadSQL2);
-        bd.execSQL("DROP TABLE IF EXISTS Skins");
+        //bd.execSQL("DROP TABLE IF EXISTS Skins");
     }
 
     //Este metodo se lanza automaticamente cuando es necesaria una actualizacion de la estructura

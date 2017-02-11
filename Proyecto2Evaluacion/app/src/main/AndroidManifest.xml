@@ -18,7 +18,8 @@
         <activity android:name=".Login" />
         <activity android:name=".Pedido" />
         <activity android:name=".Registro" />
-        <activity android:name=".Skin"></activity>
+        <activity android:name=".Skin" />
+        <activity android:name=".Factura"></activity>
     </application>
 
 </manifest>

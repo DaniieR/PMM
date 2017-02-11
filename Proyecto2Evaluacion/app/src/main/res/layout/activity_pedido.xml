@@ -89,7 +89,8 @@
         <Button
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:text="COMPRAR" />
+            android:text="COMPRAR"
+            android:id="@+id/botonComprar"/>
     </TableRow>
     </LinearLayout>
 </TableLayout>
