@@ -48,7 +48,7 @@ public class Pedido extends AppCompatActivity {
         //cliBDh.crearProductosInicio();
 
 
-
+        //DESCOMENTAR LA PRIMERA VEZ QUE SE INICIA LA APLICACION PARA QUE SE MUESTREN DATOS EN EL SPINNER
         /*bd.execSQL("INSERT INTO Skins (nombre, skin, precio) VALUES ('LeBlanc', 'Hija De Los Cuervos', '10.00')");
         bd.execSQL("INSERT INTO Skins (nombre, skin, precio) VALUES ('LeBlanc', 'Bosque Ancestral', '8.00')");
         bd.execSQL("INSERT INTO Skins (nombre, skin, precio) VALUES ('Ahri', 'Arcade', '12.00')");
