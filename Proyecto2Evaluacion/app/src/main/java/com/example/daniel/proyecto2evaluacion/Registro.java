@@ -39,6 +39,8 @@ public class Registro extends AppCompatActivity {
                     newValues.put("usuario",usuario.getText().toString());
                     newValues.put("contraseña",contraseña.getText().toString());
                     bd.insert("Usuarios",null,newValues);
+                    Intent intent = new Intent(Registro.this,Login.class);
+                    startActivity(intent);
                     Toast.makeText(getApplicationContext(),mensaje,Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getApplicationContext(),mensaje1,Toast.LENGTH_SHORT).show();

@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,12 +27,12 @@ import java.util.ArrayList;
 
 public class Pedido extends AppCompatActivity {
     Spinner miSpinner;
-    Button miButton;
+    Button miButton,mostrarHistorial;
     RadioGroup miRadio;
     RadioButton radiobutton1,radiobutton2;
-    CheckBox credito,transferencia;
+    CheckBox azul, rojo;
     String seleccionado, usuario;
-    boolean pagoCredito,pagoTransferencia;
+    boolean pagoAzul, pagoRojo;
     private Skin[]skins;
     Bundle bundle;
     Intent intent;
@@ -96,15 +95,28 @@ public class Pedido extends AppCompatActivity {
 
         //COGEMOS LOS DATOS
         miButton = (Button)findViewById(R.id.botonComprar);
+        mostrarHistorial = (Button)findViewById(R.id.historial);
         miRadio = (RadioGroup)findViewById(R.id.rg);
         radiobutton1 = (RadioButton)findViewById(R.id.radiobutton1);
         radiobutton2 = (RadioButton)findViewById(R.id.radiobutton2);
-        credito = (CheckBox)findViewById(R.id.credito);
-        transferencia = (CheckBox)findViewById(R.id.transferencia);
-        pagoCredito=false;
-        pagoTransferencia=false;
+        azul = (CheckBox)findViewById(R.id.azul);
+        rojo = (CheckBox)findViewById(R.id.rojo);
+        pagoAzul =false;
+        pagoRojo =false;
         seleccionado="";
         usuario = getIntent().getStringExtra("usuario");
+
+        mostrarHistorial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bundle = new Bundle();
+                usuario = getIntent().getStringExtra("usuario");
+                bundle.putSerializable("usuario",usuario);
+                intent = new Intent(Pedido.this,Historial.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
         miButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,28 +132,28 @@ public class Pedido extends AppCompatActivity {
 
 
                 //COMPROBAMOS LA FORMA DE PAGO
-                if (credito.isChecked()){
-                    pagoCredito=true;
-                }
-                bundle.putBoolean("pagoCredito",pagoCredito);
-                bundle.putString("credito",credito.getText().toString());
-
-                if (transferencia.isChecked()){
-                    pagoTransferencia=true;
-                }
-                bundle.putBoolean("pagoTransferencia",pagoTransferencia);
-                bundle.putString("transferencia",transferencia.getText().toString());
-
-                //COMPROBAMOS SI LO QUIERE CON CHROMAS O SIN
                 if (miRadio.getCheckedRadioButtonId()==R.id.radiobutton1){
                     bundle.putString("RadioGroup",radiobutton1.getText().toString());
-                    seleccionado="con chromas";
-                    bundle.putString("chromas",seleccionado);
+                    seleccionado="con tarjeta de credito";
+                    bundle.putString("pago",seleccionado);
                 }else{
                     bundle.putString("RadioGroup",radiobutton2.getText().toString());
-                    seleccionado="sin chromas";
-                    bundle.putString("chromas",seleccionado);
+                    seleccionado="con transferencia";
+                    bundle.putString("pago",seleccionado);
                 }
+
+                //COMPROBAMOS LOS CHROMAS QUE QUIERE
+                if (azul.isChecked()){
+                    pagoAzul =true;
+                }
+                bundle.putBoolean("pagoAzul", pagoAzul);
+                bundle.putString("azul", azul.getText().toString());
+
+                if (rojo.isChecked()){
+                    pagoRojo =true;
+                }
+                bundle.putBoolean("pagoRojo", pagoRojo);
+                bundle.putString("rojo", rojo.getText().toString());
 
                 mostrarInformacion();
 
@@ -178,11 +190,14 @@ public class Pedido extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.logueado:
                 UsuarioActual();
+                return true;
             case R.id.Internet:
-                UsuarioActual();
-                break;
+                intent = new Intent(Pedido.this,Internet.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return true;
     }
     public void UsuarioActual(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -218,7 +233,7 @@ public class Pedido extends AppCompatActivity {
             personaje.setText(skins[i].getPersonaje());
 
             TextView aspecto = (TextView)item.findViewById(R.id.aspecto_skin);
-            aspecto.setText(skins[i].getPersonaje());
+            aspecto.setText(skins[i].getAspecto());
 
             TextView precio = (TextView)item.findViewById(R.id.precio_skin);
             precio.setText(String.valueOf(skins[i].getPrecio()));

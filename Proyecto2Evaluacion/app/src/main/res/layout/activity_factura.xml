@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="AÑADIR EL SIGUIENTE PRODUCTO AL CARRO?"
+            android:text="EL PEDIDO ES EL SIGUIENTE:"
             android:textSize="24sp"
             android:textColor="@android:color/background_light" />
         <TextView

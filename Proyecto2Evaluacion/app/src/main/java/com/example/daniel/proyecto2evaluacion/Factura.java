@@ -15,7 +15,7 @@ public class Factura extends AppCompatActivity {
     private Intent intent;
     private String extra,usuario, pedido;
     private Double precioFinal;
-    private Boolean credito,transferencia;
+    private Boolean azul, rojo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +37,8 @@ public class Factura extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         usuario = getIntent().getStringExtra("usuario");
         skinM = (Skin)intent.getSerializableExtra("producto");
-        credito = intent.getBooleanExtra("pagoCredito",false);
-        transferencia = intent.getBooleanExtra("pagoTransferencia",false);
+        azul = intent.getBooleanExtra("pagoAzul",false);
+        rojo = intent.getBooleanExtra("pagoRojo",false);
 
         //RELLENAMOS LOS TEXTVIEW
         String personaje = skinM.getPersonaje();
@@ -47,22 +47,27 @@ public class Factura extends AppCompatActivity {
         String skin = skinM.getAspecto();
         Skin.setText("SKIN: "+skin);
 
-        if (credito.booleanValue()==true){
-            Pago.setText("LA FORMA DE PAGO ES : POR TARJETA DE CREDITO");
+        if (azul.booleanValue()==true){
+            Pago.setText("AZUL");
         }
-        if (transferencia.booleanValue()==true){
-            Pago.setText("LA FORMA DE PAGO ES : POR TRANSFERENCIA");
+        if (rojo.booleanValue()==true){
+            Pago.setText("ROJO");
         }
 
-        extra = intent.getStringExtra("chromas");
-        Extra.setText("CHROMAS: "+extra);
+        extra = intent.getStringExtra("pago");
+        Extra.setText("FORMA DE PAGO: "+extra);
 
         //CALCULAR EL PRECIO FINAL
         final Double precio = skinM.getPrecio();
-        if (extra.equals("con chromas")){
+        if (extra.equals("con transferencia")){
             precioFinal = precio + 5.00;
+        } else{
+            precioFinal = precio;
         }
-        if (transferencia.booleanValue()==true) {
+        if (rojo.booleanValue()==true) {
+            precioFinal = precioFinal + 1.50;
+        }
+        if (azul.booleanValue()==true) {
             precioFinal = precioFinal + 1.50;
         }
         Total.setText("EL PRECIO TOTAL ES: "+String.valueOf(precioFinal)+"€");
@@ -74,7 +79,7 @@ public class Factura extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bd.execSQL("INSERT INTO Pedidos (usuario, pedido) VALUES ('"+usuario+"', '"+pedido+"')");
-                Toast.makeText(getApplicationContext(),"AÑADIDO AL CARRO",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"COMPRA REALIZADA",Toast.LENGTH_SHORT).show();
                 intent = new Intent(Factura.this,Pedido.class);
                 startActivity(intent);
             }

@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Spinner
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/spinner">
         </Spinner>
@@ -49,18 +49,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/radiobutton1"
-                android:text="CON CHROMAS"/>
+                android:text="CON TARJETA DE CREDITO"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/radiobutton2"
-                android:text="SIN CHROMAS"/>
+                android:text="CON TRANSFERENCIA"/>
         </RadioGroup>
     </TableRow>
     <TextView
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:text="METODO DE PAGO: "
+       android:text="CHROMAS: "
        android:textSize="10pt"
         android:textStyle="bold"
         android:paddingTop="20px"
@@ -72,13 +72,18 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/credito"
-            android:text="CON TARJETA DE CREDITO"/>
+            android:id="@+id/azul"
+            android:text="AZUL"/>
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/transferencia"
-            android:text="CON TRANSFERENCIA"/>
+            android:id="@+id/rojo"
+            android:text="ROJO"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/historial"
+            android:text="Historial de compras"/>
     </TableRow>
     <TableRow
         android:layout_width="match_parent"
